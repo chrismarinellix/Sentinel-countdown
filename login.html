@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Sentinel - Login</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --stockholm-neon: #00E3A9;
+            --malmo-green: #005454;
+            --trondheim-night: #1d1d1b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--malmo-green) 0%, var(--trondheim-night) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=95');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(60px) saturate(180%);
+            -webkit-backdrop-filter: blur(60px) saturate(180%);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sentinel-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .sentinel-logo svg {
+            width: 100px;
+            height: 100px;
+            filter: drop-shadow(0 0 20px rgba(0, 227, 169, 0.5));
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--stockholm-neon), white);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--stockholm-neon);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 3px rgba(0, 227, 169, 0.1);
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--stockholm-neon), var(--malmo-green));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 227, 169, 0.4);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            background: rgba(249, 45, 99, 0.2);
+            border: 1px solid rgba(249, 45, 99, 0.5);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+            text-align: center;
+        }
+
+        .error-message.show {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .help-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .help-text strong {
+            color: var(--stockholm-neon);
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        .remember-me label {
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="sentinel-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <defs>
+                    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#00E3A9;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#005454;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M50 10 L80 25 L80 50 Q80 75 50 90 Q20 75 20 50 L20 25 Z"
+                      fill="url(#shieldGrad)" stroke="white" stroke-width="2"/>
+                <text x="50" y="62" font-size="40" text-anchor="middle" fill="white" font-weight="bold">S</text>
+            </svg>
+        </div>
+
+        <h1>Project Sentinel</h1>
+        <p class="subtitle">Process Excellence Framework</p>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="firstname.lastname" required autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+            </div>
+
+            <div class="remember-me">
+                <input type="checkbox" id="rememberMe" name="rememberMe">
+                <label for="rememberMe">Remember me on this device</label>
+            </div>
+
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="help-text">
+            <strong>Default Password:</strong> password<br>
+            Contact your Sentinel Lead for assistance
+        </div>
+    </div>
+
+    <script src="js/db-operations.js"></script>
+    <script>
+        const db = new DatabaseOperations();
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            if (!username || !password) {
+                showError('Please enter both username and password');
+                return;
+            }
+
+            const result = await db.authenticate(username, password);
+
+            if (result.success) {
+                // Save credentials if Remember Me is checked
+                if (rememberMe) {
+                    localStorage.setItem('sentinel_remember_user', username);
+                    localStorage.setItem('sentinel_remember_pass', password);
+                    localStorage.setItem('sentinel_remember_enabled', 'true');
+                } else {
+                    // Clear saved credentials if not checked
+                    localStorage.removeItem('sentinel_remember_user');
+                    localStorage.removeItem('sentinel_remember_pass');
+                    localStorage.removeItem('sentinel_remember_enabled');
+                }
+
+                // Successful login - redirect to main application
+                window.location.href = 'index.html';
+            } else {
+                showError('Invalid username or password');
+            }
+        });
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('show');
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+            }, 3000);
+        }
+
+        // Check if already logged in or if Remember Me is enabled
+        window.addEventListener('DOMContentLoaded', async () => {
+            const currentUser = db.getCurrentUser();
+            if (currentUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Check for Remember Me credentials
+            const rememberEnabled = localStorage.getItem('sentinel_remember_enabled');
+            const savedUsername = localStorage.getItem('sentinel_remember_user');
+            const savedPassword = localStorage.getItem('sentinel_remember_pass');
+
+            if (rememberEnabled === 'true' && savedUsername && savedPassword) {
+                // Auto-fill the form
+                document.getElementById('username').value = savedUsername;
+                document.getElementById('password').value = savedPassword;
+                document.getElementById('rememberMe').checked = true;
+
+                // Auto-login
+                const result = await db.authenticate(savedUsername, savedPassword);
+                if (result.success) {
+                    window.location.href = 'index.html';
+                } else {
+                    // Clear invalid saved credentials
+                    localStorage.removeItem('sentinel_remember_user');
+                    localStorage.removeItem('sentinel_remember_pass');
+                    localStorage.removeItem('sentinel_remember_enabled');
+                    showError('Saved credentials expired. Please login again.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
