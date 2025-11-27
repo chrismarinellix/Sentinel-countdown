@@ -484,6 +484,12 @@
             <p class="tagline">Continuous Business Improvement</p>
         </div>
 
+        <!-- Entries Close Notice -->
+        <div style="text-align: center; margin-bottom: 0.5rem;">
+            <p style="font-size: 1.1rem; color: rgba(255,255,255,0.7); margin: 0;">Entries close <strong style="color: #f1c40f;">18th December 2025</strong></p>
+            <p style="font-size: 1.5rem; color: var(--stockholm-neon); font-weight: 700; margin: 0.3rem 0 0 0; text-transform: uppercase; letter-spacing: 0.1em;">Time Remaining</p>
+        </div>
+
         <!-- FLIP CLOCK -->
         <div class="flip-clock-container">
             <div class="flip-clock-unit">
@@ -580,6 +586,7 @@
         <!-- Draw Date - AFTER warning -->
         <div class="draw-date-box">
             <h2>🎯 DRAW: 19th December 2025 @ 12:00 PM</h2>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.3rem;">(Entries close 18th December)</p>
         </div>
 
         <!-- Prize Info -->
@@ -732,7 +739,8 @@
         }
 
         function updateCountdown() {
-            const targetDate = new Date('2025-12-19T12:00:00');
+            // Entries close December 18th, 2025 at 12:00 PM (one day before draw)
+            const targetDate = new Date('2025-12-18T12:00:00');
             const now = new Date();
             const diff = targetDate - now;
 
