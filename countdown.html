@@ -553,32 +553,27 @@
                 <div class="flip-clock-label">Minutes</div>
             </div>
 
-            <div class="flip-clock-unit">
-                <div class="flip-clock-digits">
-                    <div class="flip-card" id="secs-tens">
-                        <div class="flip-card-inner">
-                            <div class="rivet tl"></div>
-                            <div class="rivet tr"></div>
-                            <div class="rivet bl"></div>
-                            <div class="rivet br"></div>
-                            <span class="flip-card-number">0</span>
-                        </div>
-                    </div>
-                    <div class="flip-card" id="secs-ones">
-                        <div class="flip-card-inner">
-                            <div class="rivet tl"></div>
-                            <div class="rivet tr"></div>
-                            <div class="rivet bl"></div>
-                            <div class="rivet br"></div>
-                            <span class="flip-card-number">0</span>
-                        </div>
-                    </div>
+        </div>
+
+        <!-- HAZARD Warning - directly under clock -->
+        <div class="warning-footer" style="margin-top: 1rem; margin-bottom: 1rem;">
+            <div class="hazard-box">
+                <div class="hazard-stripes"></div>
+                <div class="hazard-content">
+                    <div class="hazard-title">⚠️ WARNING ⚠️</div>
+                    <p class="hazard-text">
+                        Not participating and then watching your colleague win a <strong>MacBook Air</strong>
+                        for submitting that process improvement idea you've been complaining about for months
+                        is the <strong>emotional equivalent of an arc flash</strong>.
+                        <br><br>
+                        <em>Submit your idea. It takes 5 minutes. Your future self will thank you.</em>
+                    </p>
                 </div>
-                <div class="flip-clock-label">Seconds</div>
+                <div class="hazard-stripes"></div>
             </div>
         </div>
 
-        <!-- Draw Date - AFTER countdown -->
+        <!-- Draw Date - AFTER warning -->
         <div class="draw-date-box">
             <h2>🎯 DRAW: 19th December 2025 @ 12:00 PM</h2>
         </div>
@@ -620,23 +615,6 @@
             </div>
         </div>
 
-        <!-- HAZARD Warning Footer -->
-        <div class="warning-footer">
-            <div class="hazard-box">
-                <div class="hazard-stripes"></div>
-                <div class="hazard-content">
-                    <div class="hazard-title">⚠️ WARNING ⚠️</div>
-                    <p class="hazard-text">
-                        Not participating and then watching your colleague win a <strong>MacBook Air</strong>
-                        for submitting that process improvement idea you've been complaining about for months
-                        is the <strong>emotional equivalent of an arc flash</strong>.
-                        <br><br>
-                        <em>Submit your idea. It takes 5 minutes. Your future self will thank you.</em>
-                    </p>
-                </div>
-                <div class="hazard-stripes"></div>
-            </div>
-        </div>
     </div>
 
     <!-- Click sound for flip clock -->
@@ -669,8 +647,7 @@
         let prevValues = {
             daysTens: -1, daysOnes: -1,
             hoursTens: -1, hoursOnes: -1,
-            minsTens: -1, minsOnes: -1,
-            secsTens: -1, secsOnes: -1
+            minsTens: -1, minsOnes: -1
         };
 
         function updateDigit(elementId, newValue, prevKey) {
@@ -705,20 +682,16 @@
                 updateDigit('hours-ones', 0, 'hoursOnes');
                 updateDigit('mins-tens', 0, 'minsTens');
                 updateDigit('mins-ones', 0, 'minsOnes');
-                updateDigit('secs-tens', 0, 'secsTens');
-                updateDigit('secs-ones', 0, 'secsOnes');
                 return;
             }
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
             const daysStr = String(days).padStart(2, '0');
             const hoursStr = String(hours).padStart(2, '0');
             const minsStr = String(minutes).padStart(2, '0');
-            const secsStr = String(seconds).padStart(2, '0');
 
             updateDigit('days-tens', daysStr[0], 'daysTens');
             updateDigit('days-ones', daysStr[1], 'daysOnes');
@@ -726,8 +699,6 @@
             updateDigit('hours-ones', hoursStr[1], 'hoursOnes');
             updateDigit('mins-tens', minsStr[0], 'minsTens');
             updateDigit('mins-ones', minsStr[1], 'minsOnes');
-            updateDigit('secs-tens', secsStr[0], 'secsTens');
-            updateDigit('secs-ones', secsStr[1], 'secsOnes');
         }
 
         // Initialize audio context on first user interaction
