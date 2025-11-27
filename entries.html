@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Sentinel - Current Entries</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --stockholm-neon: #00E3A9;
+            --malmo-green: #005454;
+            --trondheim-night: #1d1d1b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, var(--malmo-green) 0%, var(--trondheim-night) 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--stockholm-neon), white, var(--malmo-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--stockholm-neon);
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--stockholm-neon);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--stockholm-neon);
+            color: var(--trondheim-night);
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--stockholm-neon);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .entries-table {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-size: 1.1rem;
+            color: var(--stockholm-neon);
+            border-bottom: 2px solid var(--stockholm-neon);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        tr:hover {
+            background: rgba(0, 227, 169, 0.05);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            background: rgba(241, 136, 244, 0.2);
+            border: 1px solid #f188f4;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            color: #ffc107;
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, var(--stockholm-neon), var(--malmo-green));
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .view-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pagination button {
+            padding: 0.8rem 1.5rem;
+        }
+
+        .page-info {
+            color: var(--stockholm-neon);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">CURRENT ENTRIES</h1>
+            <p class="subtitle">Project Sentinel - December 2025</p>
+            <a href="LAUNCH-FLYER.html" class="back-btn">← Back to Main Page</a>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="stat-number" id="total-entries">0</div>
+                <div class="stat-label">Total Entries</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="under-review">0</div>
+                <div class="stat-label">Under Review</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">22</div>
+                <div class="stat-label">Days Until Winner</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">Dec 22</div>
+                <div class="stat-label">Prize Announcement</div>
+            </div>
+        </div>
+
+        <div class="entries-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Submitter</th>
+                        <th>Region</th>
+                        <th>Idea Title</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="entries-tbody">
+                    <tr><td colspan="8" style="text-align: center; padding: 3rem;">Loading entries...</td></tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button id="prev-btn" class="view-btn" onclick="changePage(-1)">← Previous</button>
+                <div class="page-info">
+                    Page <span id="current-page">1</span> of <span id="total-pages">1</span>
+                </div>
+                <button id="next-btn" class="view-btn" onclick="changePage(1)">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="entries_data.js"></script>
+    <script>
+        const ENTRIES_PER_PAGE = 10;
+        let currentPage = 1;
+        let totalPages = 1;
+
+        function init() {
+            if (typeof entries === 'undefined') {
+                document.getElementById('entries-tbody').innerHTML =
+                    '<tr><td colspan="8" style="text-align: center; padding: 3rem; color: #f92d63;">Error: Could not load entries data</td></tr>';
+                return;
+            }
+
+            const totalEntries = Object.keys(entries).length;
+            totalPages = Math.ceil(totalEntries / ENTRIES_PER_PAGE);
+
+            document.getElementById('total-entries').textContent = totalEntries;
+            document.getElementById('under-review').textContent = totalEntries;
+
+            displayPage();
+        }
+
+        function displayPage() {
+            const tbody = document.getElementById('entries-tbody');
+            tbody.innerHTML = '';
+
+            const startIdx = (currentPage - 1) * ENTRIES_PER_PAGE + 1;
+            const endIdx = Math.min(startIdx + ENTRIES_PER_PAGE - 1, Object.keys(entries).length);
+
+            for (let i = startIdx; i <= endIdx; i++) {
+                const entry = entries[i];
+                if (!entry) continue;
+
+                const row = document.createElement('tr');
+
+                let date = entry.dateSubmitted || 'Unknown';
+                if (date.includes('T')) {
+                    try {
+                        date = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                    } catch (e) {}
+                }
+
+                let region = entry.region || 'TBD';
+                if (region.toLowerCase().includes('malaysia')) region = '🇲🇾 Malaysia';
+                else if (region.toLowerCase().includes('australia')) region = '🇦🇺 Australia';
+                else if (region.toLowerCase().includes('india')) region = '🇮🇳 India';
+
+                row.innerHTML = `
+                    <td>#${String(i).padStart(3, '0')}</td>
+                    <td>${date}</td>
+                    <td>${entry.submitter || 'Unknown'}</td>
+                    <td>${region}</td>
+                    <td>${entry.ideaTitle || '[No title]'}</td>
+                    <td><span class="category-badge">${entry.category || 'TBD'}</span></td>
+                    <td><span class="status-badge">${entry.status || 'Under Review'}</span></td>
+                    <td><button class="view-btn" onclick="alert('Entry #${i}\\n\\n' + '${(entry.ideaTitle || 'No title').replace(/'/g, "\\'")}\\n\\nFull details coming soon!')">View</button></td>
+                `;
+                tbody.appendChild(row);
+            }
+
+            document.getElementById('current-page').textContent = currentPage;
+            document.getElementById('total-pages').textContent = totalPages;
+            document.getElementById('prev-btn').disabled = currentPage === 1;
+            document.getElementById('next-btn').disabled = currentPage === totalPages;
+        }
+
+        function changePage(direction) {
+            const newPage = currentPage + direction;
+            if (newPage < 1 || newPage > totalPages) return;
+            currentPage = newPage;
+            displayPage();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
