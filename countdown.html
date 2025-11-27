@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT SENTINEL - Countdown to Draw</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --stockholm-neon: #00E3A9;
+            --malmo-green: #005454;
+            --barcelona-dusk: #3c1363;
+            --houston-pink: #f188f4;
+            --mumbai-magenta: #8e329c;
+            --hellerup-royal: #05275e;
+            --bath-sky: #4b81ef;
+            --orlando-red: #f92d63;
+            --trondheim-night: #1d1d1b;
+            --bergen-rain: #dadada;
+            --oslo-snow: #f8f8f8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, var(--malmo-green) 0%, var(--trondheim-night) 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 227, 169, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(75, 129, 239, 0.05) 0%, transparent 50%);
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sentinel-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem auto;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 30px rgba(0, 227, 169, 0.6));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 50px rgba(0, 227, 169, 0.9));
+            }
+        }
+
+        .title {
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--stockholm-neon), white, var(--malmo-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: var(--stockholm-neon);
+            font-weight: 700;
+        }
+
+        /* Countdown - THE BIG ONE */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: clamp(20px, 5vw, 50px);
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            border: 3px solid rgba(0, 227, 169, 0.5);
+            border-radius: 25px;
+            padding: clamp(25px, 5vw, 50px);
+            min-width: clamp(120px, 22vw, 200px);
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 227, 169, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .countdown-box:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: var(--stockholm-neon);
+            box-shadow: 0 20px 60px rgba(0, 227, 169, 0.5);
+        }
+
+        .countdown-number {
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 900;
+            color: var(--stockholm-neon);
+            text-shadow: 0 0 40px rgba(0, 227, 169, 0.9);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* Draw Date Box */
+        .draw-date-box {
+            background: linear-gradient(135deg, var(--stockholm-neon), var(--malmo-green));
+            padding: 1.2rem 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 1.5rem 0;
+            box-shadow: 0 12px 40px rgba(0, 227, 169, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 12px 40px rgba(0, 227, 169, 0.5);
+            }
+            to {
+                box-shadow: 0 12px 60px rgba(0, 227, 169, 0.8);
+            }
+        }
+
+        .draw-date-box h2 {
+            font-size: clamp(1.3rem, 3.5vw, 2rem);
+            color: white;
+            margin: 0;
+        }
+
+        /* Prize Info */
+        .prize-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            border-radius: 20px;
+            padding: 1.5rem 3rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .prize-main {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .prize-alt {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        .prize-note {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Enter Button */
+        @keyframes pulse-button {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 40px rgba(241, 136, 244, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 60px rgba(241, 136, 244, 0.8);
+            }
+        }
+
+        .enter-btn {
+            background: linear-gradient(135deg, var(--houston-pink), var(--mumbai-magenta));
+            color: white;
+            padding: 1.5rem 4rem;
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 800;
+            cursor: pointer;
+            animation: pulse-button 2s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1.5rem 0;
+        }
+
+        .enter-btn:hover {
+            animation: none;
+            transform: scale(1.08);
+            box-shadow: 0 20px 70px rgba(241, 136, 244, 0.9);
+        }
+
+        /* Ideas Section */
+        .ideas-section {
+            background: rgba(0, 227, 169, 0.1);
+            border: 2px solid var(--stockholm-neon);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem auto;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .ideas-title {
+            font-size: 1.3rem;
+            color: var(--stockholm-neon);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .ideas-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ideas-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .idea-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .idea-chip:hover {
+            background: rgba(0, 227, 169, 0.2);
+            border-color: var(--stockholm-neon);
+            transform: scale(1.05);
+            color: #fff;
+        }
+
+        /* Warning Footer */
+        .warning-footer {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            text-align: center;
+            max-width: 700px;
+        }
+
+        .warning-box {
+            background: rgba(249, 45, 99, 0.1);
+            border: 2px solid var(--orlando-red);
+            border-radius: 15px;
+            padding: 1.2rem;
+        }
+
+        .warning-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .warning-text .highlight {
+            color: var(--orlando-red);
+            font-weight: 700;
+        }
+
+        .zap-icon {
+            color: #ffd700;
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .countdown-container {
+                gap: 15px;
+            }
+            .countdown-box {
+                min-width: 90px;
+                padding: 20px;
+            }
+            .countdown-number {
+                font-size: 3.5rem;
+            }
+            .enter-btn {
+                padding: 1.2rem 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="sentinel-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00E3A9;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#005454;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M100 20 L160 50 L160 100 Q160 150 100 180 Q40 150 40 100 L40 50 Z"
+                          fill="url(#shieldGrad)" stroke="white" stroke-width="4"/>
+                    <text x="100" y="125" font-size="80" text-anchor="middle" fill="white" font-weight="bold">S</text>
+                </svg>
+            </div>
+
+            <h1 class="title">PROJECT SENTINEL</h1>
+            <p class="tagline">Continuous Business Improvement</p>
+        </div>
+
+        <!-- BIG Countdown - FIRST -->
+        <div class="countdown-container">
+            <div class="countdown-box">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+
+        <!-- Draw Date - AFTER countdown -->
+        <div class="draw-date-box">
+            <h2>🎯 DRAW: 19th December 2025 @ 12:00 PM</h2>
+        </div>
+
+        <!-- Prize Info - Updated -->
+        <div class="prize-box">
+            <div class="prize-main">🏆 MacBook Air</div>
+            <div class="prize-alt">OR Windows Laptop OR Cash Equivalent</div>
+            <div class="prize-note">Winner's choice</div>
+        </div>
+
+        <!-- Enter Button -->
+        <a href="login.html" class="enter-btn">
+            ⚡ Enter Now ⚡
+        </a>
+
+        <!-- Ideas Section -->
+        <div class="ideas-section">
+            <div class="ideas-title">💡 Not sure what to submit?</div>
+            <div class="ideas-subtitle">Think about what causes friction in your day-to-day work...</div>
+            <div class="ideas-list">
+                <span class="idea-chip">📊 That spreadsheet you manually update every week</span>
+                <span class="idea-chip">📧 The approval process that takes 47 emails</span>
+                <span class="idea-chip">📋 Copy-pasting between systems</span>
+                <span class="idea-chip">⏳ Waiting for information from other teams</span>
+                <span class="idea-chip">🔄 Redundant data entry</span>
+                <span class="idea-chip">📅 That meeting that could be an email</span>
+                <span class="idea-chip">📑 Manual report generation</span>
+                <span class="idea-chip">📚 Outdated documentation</span>
+                <span class="idea-chip">📬 Information stuck in someone's inbox</span>
+                <span class="idea-chip">😤 The thing that makes you sigh every Monday</span>
+                <span class="idea-chip">🔁 Double-handling of tasks</span>
+                <span class="idea-chip">🤝 Unclear handover processes</span>
+            </div>
+        </div>
+
+        <!-- Warning Footer -->
+        <div class="warning-footer">
+            <div class="warning-box">
+                <p class="warning-text">
+                    <span class="zap-icon">⚡</span>
+                    <span class="highlight">FAIR WARNING:</span> Missing this competition is like standing next to a
+                    switchgear during an arc flash — except instead of 35,000°F of plasma to the face,
+                    you'll just have to watch your colleague unbox a new MacBook while you explain
+                    why you were "too busy" to spend 5 minutes typing up that annoying process
+                    you complain about every single week.
+                    <span class="zap-icon">⚡</span>
+                    <br><br>
+                    <em style="opacity: 0.7;">Your future self will either thank you or haunt you. Choose wisely.</em>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            // Target: December 19, 2025 at 12:00 PM
+            const targetDate = new Date('2025-12-19T12:00:00');
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Update every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
