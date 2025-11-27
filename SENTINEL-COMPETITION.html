@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel Competition - Entry Update</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --stockholm-neon: #00E3A9;
+            --malmo-green: #005454;
+            --barcelona-dusk: #3c1363;
+            --houston-pink: #f188f4;
+            --mumbai-magenta: #8e329c;
+            --hellerup-royal: #05275e;
+            --bath-sky: #4b81ef;
+            --orlando-red: #f92d63;
+            --trondheim-night: #1d1d1b;
+            --bergen-rain: #dadada;
+            --oslo-snow: #f8f8f8;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, var(--malmo-green) 0%, var(--trondheim-night) 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 227, 169, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(75, 129, 239, 0.05) 0%, transparent 50%);
+            opacity: 0.8;
+            z-index: 0;
+        }
+
+        .flyer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sentinel-logo-large {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem auto;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 30px rgba(0, 227, 169, 0.6));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 50px rgba(0, 227, 169, 0.9));
+            }
+        }
+
+        .title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--stockholm-neon), white, var(--malmo-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: 2rem;
+            color: var(--stockholm-neon);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .glass-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .announcement-box {
+            background: linear-gradient(135deg, var(--stockholm-neon), var(--malmo-green));
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 12px 40px rgba(0, 227, 169, 0.5);
+        }
+
+        .announcement-box h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .prize-highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .prize-highlight h3 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Continuous Improvement Circle Badge - Enhanced Symmetry */
+        .improvement-circle {
+            width: 560px;
+            height: 560px;
+            margin: 6rem auto;
+            position: relative;
+        }
+
+        .circle-ring {
+            width: 400px;
+            height: 400px;
+            border: 10px solid var(--stockholm-neon);
+            border-radius: 50%;
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            box-shadow: 0 0 60px rgba(0, 227, 169, 0.8), inset 0 0 60px rgba(0, 227, 169, 0.4);
+        }
+
+        .circle-ring-rotating {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .circle-dot {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, white, var(--stockholm-neon));
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+            border: 3px solid white;
+        }
+
+        /* Perfectly symmetrical 5 dots - Pentagon (72° apart) */
+        .circle-dot:nth-child(1) { top: -12px; left: 50%; margin-left: -12px; } /* IDEA - 0° */
+        .circle-dot:nth-child(2) { top: 20%; right: 3%; } /* REVIEW - 72° */
+        .circle-dot:nth-child(3) { bottom: 10%; right: 23%; } /* APPROVE - 144° */
+        .circle-dot:nth-child(4) { bottom: 10%; left: 23%; } /* IMPLEMENT - 216° */
+        .circle-dot:nth-child(5) { top: 20%; left: 3%; } /* IMPROVE - 288° */
+
+        .circle-labels {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle-label {
+            position: absolute;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: white;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 227, 169, 0.3), rgba(0, 84, 84, 0.3));
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            border: 3px solid var(--stockholm-neon);
+            box-shadow: 0 4px 20px rgba(0, 227, 169, 0.4);
+            min-width: 140px;
+        }
+
+        .circle-label-icon {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Perfect Pentagon - Evenly Spaced 72° Apart Around Circle */
+        .circle-label:nth-child(1) {
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        } /* IDEA - 0° (top center) */
+
+        .circle-label:nth-child(2) {
+            top: 23%;
+            right: 3%;
+        } /* REVIEW - 72° (upper right) */
+
+        .circle-label:nth-child(3) {
+            bottom: 13%;
+            right: 20%;
+        } /* APPROVE - 144° (lower right) */
+
+        .circle-label:nth-child(4) {
+            bottom: 13%;
+            left: 20%;
+        } /* IMPLEMENT - 216° (lower left) */
+
+        .circle-label:nth-child(5) {
+            top: 23%;
+            left: 3%;
+        } /* IMPROVE - 288° (upper left) */
+
+        .circle-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: transparent;
+            padding: 0;
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-center-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.5;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .mini-org-chart {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .region-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .region-box.malaysia { border-color: #E74C3C; }
+        .region-box.australia { border-color: #4b81ef; }
+        .region-box.india { border-color: #F1C40F; }
+
+        .region-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .sentinel-badge {
+            background: linear-gradient(135deg, var(--stockholm-neon), var(--malmo-green));
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            border: 3px solid #ffc107;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .sentinel-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .sentinel-role {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .how-to-participate {
+            background: rgba(0, 227, 169, 0.1);
+            border: 3px solid var(--stockholm-neon);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .step-number {
+            background: var(--stockholm-neon);
+            color: var(--trondheim-night);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+
+        .terms-box {
+            background: rgba(249, 45, 99, 0.1);
+            border: 2px solid var(--orlando-red);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media print {
+            .submit-btn {
+                display: none;
+            }
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--stockholm-neon), var(--malmo-green));
+            color: white;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 227, 169, 0.5);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 60px rgba(0, 227, 169, 0.7);
+        }
+
+        /* Pulsing button animation */
+        @keyframes pulse-button {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 40px rgba(241, 136, 244, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 60px rgba(241, 136, 244, 0.8);
+            }
+        }
+
+        .pulse-btn {
+            background: linear-gradient(135deg, var(--houston-pink), var(--mumbai-magenta));
+            color: white;
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            animation: pulse-button 2s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1.5rem;
+        }
+
+        .pulse-btn:hover {
+            animation: none;
+            transform: scale(1.08);
+            box-shadow: 0 20px 70px rgba(241, 136, 244, 0.9);
+        }
+
+        /* Expandable T's and C's */
+        .accordion {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: rgba(0, 227, 169, 0.1);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: rgba(0, 227, 169, 0.2);
+        }
+
+        .accordion-header h3 {
+            color: var(--stockholm-neon);
+            font-size: 1.4rem;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion.active .accordion-content {
+            max-height: 2000px;
+        }
+
+        .accordion-inner {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="sentinel-logo-large">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00E3A9;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#005454;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M100 20 L160 50 L160 100 Q160 150 100 180 Q40 150 40 100 L40 50 Z"
+                          fill="url(#shieldGrad)" stroke="white" stroke-width="4"/>
+                    <text x="100" y="125" font-size="80" text-anchor="middle" fill="white" font-weight="bold">S</text>
+                </svg>
+            </div>
+
+            <h1 class="title">PROJECT SENTINEL</h1>
+            <p class="tagline">Continuous Business Improvement</p>
+            <p class="subtitle">Vysus Power and Energy Systems</p>
+        </div>
+
+        <!-- Announcement -->
+        <div class="announcement-box">
+            <h2>🚀 Launched!</h2>
+            <p style="font-size: 1.4rem; margin: 1.5rem 0; line-height: 1.8;">
+                Project Sentinel is LIVE! We're already receiving amazing ideas. Check out current entries below and submit yours today!
+            </p>
+            <!-- Current Entries Display -->
+            <div style="background: rgba(255, 255, 255, 0.15); padding: 2rem; border-radius: 20px; margin: 2rem 0; text-align: left;">
+                <h3 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: white;">🏆 Sentinel Competition - Entry Update (5 Entries)</h3>
+
+                <!-- Entry 1: Khadija (Nov 7 - Earliest) -->
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; margin-bottom: 2rem; border-left: 5px solid #00E3A9;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <h4 style="font-size: 1.5rem; color: #00E3A9; margin-bottom: 0.5rem;">📚 Entry #1: Training Materials Based on GPS Requirements</h4>
+                            <p style="font-size: 1rem; opacity: 0.9;">Khadija tul Kobra • Power System Engineer • Australia • Quality & Standards • Submitted Nov 7, 2025</p>
+                        </div>
+                        <span style="background: rgba(255, 193, 7, 0.3); padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.9rem; border: 2px solid #ffc107; color: #ffc107; white-space: nowrap;">Under Review</span>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.2rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95; margin-bottom: 0.8rem;">
+                            <strong style="color: #4b81ef;">📋 Current Situation:</strong> We have engineering excellence and experts in our grid connection study team who are busy delivering work to clients. When a new engineer joins the team, they face challenges learning processes due to lack of structured training materials (docs, presentations, mentorship). When a resource is assigned a new task, the project lead provides support, but due to unclear training processes and unavailable materials, it is difficult and time consuming to learn and deliver simultaneously. This impacts project time, cost, and resource wellbeing.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95;">
+                            <strong style="color: #00E3A9;">✅ Proposed Solution:</strong> Since GPS requirement document is the core of our grid connection team, prepare study material based on each NER Clause. For example: S5.2.5.1 clause study would have three sets of training materials based on project stage (R0, R1, R2). R0: recognizing inputs from OEM, tuning process, run 5251 script to generate PQ capability curve. R1: same as R0 plus additional R1 info. R2: Test plan, extracting and interpreting test data, running scripts, reporting. Use tech-talk platform where experts generate training materials and present simultaneously.
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⏱️ Time Saved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">10-20% of project budget</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">💵 Money Saved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Reduces no-charge training hours</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⚡ Other Benefits</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Better quality, fewer errors</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">👥 Who's Involved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Grid experts + Project leads</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(241, 136, 244, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #f188f4;">
+                        <p style="font-size: 0.95rem; line-height: 1.6;">
+                            <strong style="color: #f188f4;">🎯 Why This Matters:</strong> If we produce a full set of training materials, it could become a revenue-generating product in the market. Benefits the entire grid connection team and improves project delivery efficiency. Improves onboarding speed and reduces knowledge loss when team members transition.
+                        </p>
+                    </div>
+
+                    <div style="background: rgba(0, 227, 169, 0.15); padding: 1.2rem; border-radius: 8px; margin-top: 1rem; border: 3px solid #00E3A9;">
+                        <p style="font-size: 1rem; font-weight: 700; color: #00E3A9; margin-bottom: 0.8rem;">🚀 PROGRESS UPDATE (Nov 18, 2025):</p>
+                        <p style="font-size: 0.95rem; line-height: 1.7;">
+                            <strong style="color: white;">Action initiated!</strong> Weekly meetings have been set to identify and prioritize training requirements. Discussion to be had on potential commercialization and promotion effect on Vysus capability, quality standards, and speed to market.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Entry 2: Amani (Nov 13) -->
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 5px solid #00E3A9;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <h4 style="font-size: 1.5rem; color: #00E3A9; margin-bottom: 0.5rem;">💡 Entry #2: Vysus Technical Knowledge Hub</h4>
+                            <p style="font-size: 1rem; opacity: 0.9;">Amani Razif • Acting Team Lead - Malaysia • Quality & Standards • Submitted Nov 13, 2025</p>
+                        </div>
+                        <span style="background: rgba(255, 193, 7, 0.3); padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.9rem; border: 2px solid #ffc107; color: #ffc107; white-space: nowrap;">Under Review</span>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.2rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95; margin-bottom: 0.8rem;">
+                            <strong style="color: #4b81ef;">📋 Current Situation:</strong> Project teams often face similar technical challenges (e.g. control tuning issues, simulation convergence, client feedback trends), but solutions are usually stored in individual folders or chats and not easily accessible to others. This leads to repetitive troubleshooting, inconsistent approaches between project teams, and lost insights when staff move projects or teams.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95;">
+                            <strong style="color: #00E3A9;">✅ Proposed Solution:</strong> Establish a Vysus Technical Knowledge Hub — a centralised, searchable database for sharing project-based lessons learned and technical tips. Engineers would log short entries (under 2 minutes) after project milestones using a simple SharePoint or Excel form with fields like: Project name, region, tool used, Issue, root cause, solution, author. Monthly contributors can be recognised through a 'Lesson of the Month' feature.
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⏱️ Time Saved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">~2-3 hours per project</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">💵 Money Saved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Fewer rework hours</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⏰ Timeline</p>
+                            <p style="font-size: 1rem; font-weight: 600;">2 months (pilot + migration)</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">👥 Who's Involved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Sentinel team + Project Leads</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(241, 136, 244, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #f188f4;">
+                        <p style="font-size: 0.95rem; line-height: 1.6;">
+                            <strong style="color: #f188f4;">🎯 Why This Matters:</strong> Creates a sustainable internal knowledge base that enhances technical quality, accelerates report turnaround and builds a stronger sense of global collaboration across Malaysia, India and Australia. Over time, this repository becomes a differentiator for client confidence and team efficiency.
+                        </p>
+                    </div>
+
+                    <div style="background: rgba(0, 227, 169, 0.15); padding: 1.2rem; border-radius: 8px; margin-top: 1rem; border: 3px solid #00E3A9;">
+                        <p style="font-size: 1rem; font-weight: 700; color: #00E3A9; margin-bottom: 0.8rem;">🚀 IMPLEMENTATION UPDATE (Nov 18, 2025):</p>
+                        <p style="font-size: 0.95rem; line-height: 1.7;">
+                            <strong style="color: white;">Build in progress!</strong> Server expected to be available this week. System design and build started with chatbot designed to provide engineers immediate answers on process and technical questions available via web interface.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Entry 3: Anonymous (Nov 14) - NOT COMPETING -->
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; border-left: 5px solid #4b81ef;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <h4 style="font-size: 1.5rem; color: #4b81ef; margin-bottom: 0.5rem;">💾 Entry #3: Network Storage Optimization for PSCAD/PSSE Workflow</h4>
+                            <p style="font-size: 1rem; opacity: 0.9;">Anonymous Contributor • Systems & Scripting • Submitted Nov 14, 2025</p>
+                        </div>
+                        <span style="background: rgba(75, 129, 239, 0.3); padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.9rem; border: 2px solid #4b81ef; color: #4b81ef; white-space: nowrap;">Not Competing</span>
+                    </div>
+
+                    <div style="background: rgba(249, 45, 99, 0.15); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border: 2px solid #f92d63;">
+                        <p style="font-size: 0.95rem; font-weight: 600; color: white;">
+                            <strong>📢 Note:</strong> Submitted for improvement purposes only - not competing for prize. Submitter wishes to give mid-level and senior engineers a chance to compete and boost their interest level.
+                        </p>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.2rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95; margin-bottom: 0.8rem;">
+                            <strong style="color: #4b81ef;">📋 Current Situation:</strong> Every project has two stages - one is running script with PSCAD which ends up in 100GBs of data on big machines. When this has to be copied to the V-drive or other SSD drive (space and transfer rate issue, common to all Vysus Team), it takes significant time. PSCAD data must be used for PSSE benchmarking on smaller machines. Data from big machines to V-drive or SSD takes 3-4 hours or more, then transfer back to small machine takes another 3-5 hours of waiting time. This repeats as we redo tests for PSCAD machines.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95;">
+                            <strong style="color: #00E3A9;">✅ Proposed Solution:</strong> Install separate SSD as server network drive (similar to local drive) for each big machine, then map it as a drive to all small machines. When a task is done in big machine, data transferred to SSD (which is faster), then access PSSE straight from SSD without copying - this would boost the work significantly.
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⏱️ Time Saved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">6-9 hours per test cycle</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">💵 Investment</p>
+                            <p style="font-size: 1rem; font-weight: 600;">SSD hardware + network setup</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⚡ Impact</p>
+                            <p style="font-size: 1rem; font-weight: 600;">All projects benefit immediately</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">🎯 Strategy</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Manage individual SSDs per machine</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(241, 136, 244, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #f188f4;">
+                        <p style="font-size: 0.95rem; line-height: 1.6;">
+                            <strong style="color: #f188f4;">🎯 Why This Matters:</strong> Eliminates waiting time for copying data between machines (6-9 hours saved per cycle). High productivity boost across all projects. No waiting for data transfer - engineers can access PSSE data directly from network drive. Smart strategy with upfront investment cost but massive time savings across the team.
+                        </p>
+                    </div>
+
+                    <div style="background: rgba(0, 227, 169, 0.15); padding: 1.2rem; border-radius: 8px; margin-top: 1rem; border: 3px solid #00E3A9;">
+                        <p style="font-size: 1rem; font-weight: 700; color: #00E3A9; margin-bottom: 0.8rem;">🚀 IMPLEMENTATION UPDATE (Nov 18, 2025):</p>
+                        <p style="font-size: 0.95rem; line-height: 1.7;">
+                            <strong style="color: white;">Implementation underway!</strong> Funding has been sourced. SSD and NAS hardware currently being sourced. Team member needed to set up on site with IT in UK to complete setup. <strong style="color: #00E3A9;">Current Action:</strong> Naveen developing rule guide for use of SSDs to ensure proper workflow and data management procedures.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Entry 4: Dominic (Nov 14) -->
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; margin-bottom: 2rem; border-left: 5px solid #00E3A9;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <h4 style="font-size: 1.5rem; color: #00E3A9; margin-bottom: 0.5rem;">📊 Entry #4: Standardized Simulation Assessment Guideline</h4>
+                            <p style="font-size: 1rem; opacity: 0.9;">Dominic Moncada • Power Systems Engineer • Australia • Quality & Standards • Submitted Nov 14, 2025</p>
+                        </div>
+                        <span style="background: rgba(255, 193, 7, 0.3); padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.9rem; border: 2px solid #ffc107; color: #ffc107; white-space: nowrap;">Under Review</span>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.2rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95; margin-bottom: 0.8rem;">
+                            <strong style="color: #4b81ef;">📋 Current Situation:</strong> After we run simulations, we submit to a senior/lead/principal for internal review, but each reviewer reviews work differently. Delivered work is not consistent in quality - depends on scrutiny of the reviewer. Review time is not consistent - some reviewers may require more or less time to review the same type of simulation, depending on their expertise and methodology. Dependence on people and not on processes - if reviewers leave the company, nobody can do the review properly. Additional workload for seniors - apart from doing actual simulations themselves, they have to review other people's work.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95;">
+                            <strong style="color: #00E3A9;">✅ Proposed Solution:</strong> Create a Standardized Simulation Assessment Guideline - a simple document that indicates each type of simulation and what needs to be reviewed to ensure that the simulation was performed correctly and that the results are credible. Form a Technical Working Group (TWG) that will meet on a regular basis (weekly/fortnightly) to develop the document until it is completed and rolled out across the team.
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⏱️ Time Saved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Reduced review hours per project</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">💵 Cost Reduction</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Lower charge-out rate via peer reviews</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⚡ Quality Impact</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Consistent work outputs</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">🎯 Risk Reduction</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Less rework, fewer errors</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(241, 136, 244, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #f188f4;">
+                        <p style="font-size: 0.95rem; line-height: 1.6;">
+                            <strong style="color: #f188f4;">🎯 Why This Matters:</strong> Consistent work outputs because everyone reviews the same way - all delivered work will be of the same quality. Consistent review time because the review method is established - we can estimate review duration and confidently communicate to clients. Documented guideline reduces dependence on people and shifts focus to process - maintains business continuity if staff leave. Peer reviews between engineers can happen with confidence, significantly reducing workload of senior/lead/principal engineers. Builds technical capability among all engineers, enabling them to reflect on results and make valuable engineering judgements.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Entry 5: Shahrul Azri (Nov 18) -->
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; margin-bottom: 2rem; border-left: 5px solid #00E3A9;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <h4 style="font-size: 1.5rem; color: #00E3A9; margin-bottom: 0.5rem;">🎓 Entry #5: Developing Talent from Educational Level</h4>
+                            <p style="font-size: 1rem; opacity: 0.9;">Shahrul Azri Faudzi • Power System Engineer • Malaysia • Competitive Intelligence / Talent Development • Submitted Nov 18, 2025</p>
+                        </div>
+                        <span style="background: rgba(255, 193, 7, 0.3); padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.9rem; border: 2px solid #ffc107; color: #ffc107; white-space: nowrap;">Under Review</span>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.2rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95; margin-bottom: 0.8rem;">
+                            <strong style="color: #4b81ef;">📋 Current Situation:</strong> It is difficult to find talent and expertise in our area. Especially with fresh graduates, most of them have little to no experience with the tools and knowledge required to perform the tasks. This is probably due to lack of exposure from the beginning or during their educational level.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95;">
+                            <strong style="color: #00E3A9;">✅ Proposed Solution:</strong> Start taking students for an internship program. This might expose them to the market early. During the program, we can assess their potential and consider them for recruitment. Start small by taking one or two students per program.
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⚡ Effort Reduced</p>
+                            <p style="font-size: 1rem; font-weight: 600;">50% reduction in training time</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⏰ Timeline</p>
+                            <p style="font-size: 1rem; font-weight: 600;">1 year to see impact</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">👥 Who's Involved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">HR + Engineers</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">✨ Long-term Benefits</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Fresh graduates with advanced experience</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(241, 136, 244, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #f188f4;">
+                        <p style="font-size: 0.95rem; line-height: 1.6;">
+                            <strong style="color: #f188f4;">🎯 Why This Matters:</strong> The company will benefit from this in the long term. It will increase resources to deliver projects. It needs to start early to see the impact since it's a long-term project investment in talent. Graduates will have more advanced experience, reducing training time and building our talent pipeline.
+                        </p>
+                    </div>
+
+                    <div style="background: rgba(249, 45, 99, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 3px solid #f92d63;">
+                        <p style="font-size: 0.9rem; line-height: 1.6;">
+                            <strong style="color: #f92d63;">⚠️ Risks to Consider:</strong> The intern student might not be suitable or interested in our work line. If the intern student is interested in the work, they might also not work for us due to high competition in the market.
+                        </p>
+                    </div>
+
+                    <div style="background: rgba(75, 129, 239, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 3px solid #4b81ef;">
+                        <p style="font-size: 0.9rem; line-height: 1.6;">
+                            <strong style="color: #4b81ef;">🔧 Implementation:</strong> Resources needed to take care and train undergraduates. Register or make Vysus available as a company accepting and conducting internship programs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+                <!-- Entry 6: Dominic Moncada - Automated Assessment (Nov 27) -->
+                <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; margin-bottom: 2rem; border-left: 5px solid #00E3A9;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1.5rem;">
+                        <div>
+                            <h4 style="font-size: 1.5rem; color: #00E3A9; margin-bottom: 0.5rem;">🤖 Entry #6: Automated Initialization Test Assessment</h4>
+                            <p style="font-size: 1rem; opacity: 0.9;">Dominic Moncada • Power Systems Engineer • Australia • Automation / Efficiency • Submitted Nov 27, 2025</p>
+                        </div>
+                        <span style="background: rgba(255, 193, 7, 0.3); padding: 0.5rem 1rem; border-radius: 10px; font-size: 0.9rem; border: 2px solid #ffc107; color: #ffc107; white-space: nowrap;">Under Review</span>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.05); padding: 1.2rem; border-radius: 10px; margin-bottom: 1rem;">
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95; margin-bottom: 0.8rem;">
+                            <strong style="color: #4b81ef;">📋 Current Situation:</strong> In initialization tests, models must settle to steady-state values within a specified time frame (e.g., 3 seconds). Currently, engineers manually check each test case by reviewing plots of reactive power Q at the point of connection (POC Q) to verify compliance. This manual review process is time-consuming, especially for projects with many test cases.
+                        </p>
+                        <p style="font-size: 1.05rem; line-height: 1.7; opacity: 0.95;">
+                            <strong style="color: #00E3A9;">✅ Proposed Solution:</strong> Modify the initialization script to automatically flag any test case that does not initialize within the specified time frame. Instead of engineers manually checking each test case by reviewing plots, the script can expedite the process by programmatically detecting non-compliant cases. This is one example of how we can standardize and speed up the review/assessment process for simulations.
+                        </p>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⏱️ Time Saved</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Eliminates manual plot review</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">🎯 Accuracy</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Consistent compliance checks</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">⚡ Scalability</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Handles any number of test cases</p>
+                        </div>
+                        <div style="background: rgba(0, 227, 169, 0.1); padding: 1rem; border-radius: 8px;">
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.3rem;">🔗 Builds On</p>
+                            <p style="font-size: 1rem; font-weight: 600;">Entry #4: Assessment Guidelines</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(241, 136, 244, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid #f188f4;">
+                        <p style="font-size: 0.95rem; line-height: 1.6;">
+                            <strong style="color: #f188f4;">🎯 Why This Matters:</strong> This automated approach transforms manual, time-consuming compliance checks into instant, programmatic assessments. Engineers can focus on analyzing results rather than verifying compliance. The script-based flagging ensures no non-compliant test cases slip through, improving quality and consistency while significantly reducing review time.
+                        </p>
+                    </div>
+
+                    <div style="background: rgba(75, 129, 239, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 3px solid #4b81ef;">
+                        <p style="font-size: 0.9rem; line-height: 1.6;">
+                            <strong style="color: #4b81ef;">📊 Example:</strong> A plot of POC Q (MVAr) vs time shows a model settling to 0 MVAr after ~4 seconds. If the guideline specifies 3 seconds, the script automatically flags this as non-compliant - no manual inspection required.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prize-highlight">
+                <h3>🏆 December Prize</h3>
+                <p style="font-size: 2.5rem; font-weight: 800; color: white; margin: 1rem 0;">MacBook Air</p>
+                <p style="font-size: 1.3rem; font-weight: 600; color: white; margin: 0.5rem 0; opacity: 0.9;">OR Windows Laptop OR Cash Equivalent</p>
+                <p style="font-size: 1.8rem; font-weight: 700; color: white; margin-top: 0.5rem;">December 22, 2025</p>
+                <p style="font-size: 1.1rem; color: white; opacity: 0.8; margin-top: 1rem;">Winner's choice</p>
+            </div>
+            <button class="submit-btn" onclick="openEmailTemplate()" style="margin-top: 2rem;">
+                📧 Click to Submit Your Idea
+            </button>
+        </div>
+
+        <!-- Sentinel Program vs Team Clarification -->
+        <div class="glass-section" style="border: 3px solid var(--houston-pink); box-shadow: 0 8px 32px rgba(241, 136, 244, 0.4);">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--houston-pink); text-align: center;">🛡️ Understanding the Sentinel Program</h2>
+
+            <div style="background: linear-gradient(135deg, rgba(142, 50, 156, 0.15), rgba(60, 19, 99, 0.15)); padding: 2.5rem; border-radius: 15px; border: 2px solid var(--houston-pink); margin-bottom: 2rem;">
+                <p style="font-size: 1.25rem; line-height: 2; color: white; text-align: center; font-weight: 600;">
+                    The <strong style="color: var(--houston-pink);">Sentinel PROGRAM</strong> is much broader than the <strong style="color: var(--stockholm-neon);">Sentinel TEAM</strong>.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+                <div style="background: rgba(241, 136, 244, 0.1); padding: 2rem; border-radius: 15px; border: 2px solid var(--houston-pink);">
+                    <h3 style="color: var(--houston-pink); margin-bottom: 1rem; font-size: 1.5rem;">🌟 The Sentinel PROGRAM</h3>
+                    <p style="font-size: 1.05rem; line-height: 1.9; margin-bottom: 1.5rem;">
+                        <strong>Everyone is involved!</strong> This is our company-wide continuous improvement journey.
+                    </p>
+                    <ul style="font-size: 1rem; line-height: 2;">
+                        <li>✓ Everyone submits ideas</li>
+                        <li>✓ Everyone participates in improving the business</li>
+                        <li>✓ Everyone benefits from improvements</li>
+                        <li>✓ Everyone can win prizes</li>
+                        <li>✓ It's a cultural shift toward continuous improvement</li>
+                        <li>✓ Extends to training, learning, and all aspects of our business</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(0, 227, 169, 0.1); padding: 2rem; border-radius: 15px; border: 2px solid var(--stockholm-neon);">
+                    <h3 style="color: var(--stockholm-neon); margin-bottom: 1rem; font-size: 1.5rem;">🛡️ The Sentinel TEAM</h3>
+                    <p style="font-size: 1.05rem; line-height: 1.9; margin-bottom: 1.5rem;">
+                        <strong>Specific support roles.</strong> These are the people who help facilitate and review.
+                    </p>
+                    <ul style="font-size: 1rem; line-height: 2;">
+                        <li>✓ Review submissions weekly (not massive workload)</li>
+                        <li>✓ Provide feedback and guidance</li>
+                        <li>✓ Ensure quality and fairness</li>
+                        <li>✓ Specific roles still being defined</li>
+                        <li>✓ They can submit ideas too!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: rgba(0, 0, 0, 0.3); padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+                <p style="font-size: 1.2rem; line-height: 1.9; color: white;">
+                    <strong style="color: var(--stockholm-neon);">Bottom line:</strong> The Sentinel PROGRAM is for everyone. The Sentinel TEAM are just the facilitators. We're all in this together on a <strong style="color: var(--houston-pink);">continuous improvement journey</strong>.
+                </p>
+            </div>
+        </div>
+
+        <!-- What the Program Is About -->
+        <div class="glass-section">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--stockholm-neon);">🎯 What the Sentinel Program Is About</h2>
+
+            <div style="background: rgba(0, 227, 169, 0.08); padding: 2rem; border-radius: 15px; border: 2px solid var(--stockholm-neon); margin-bottom: 2rem;">
+                <p style="font-size: 1.2rem; line-height: 2; color: white;">
+                    <strong style="color: var(--stockholm-neon);">We already have existing processes.</strong> We're not trying to change for change sake.
+                </p>
+                <p style="font-size: 1.15rem; line-height: 2; margin-top: 1rem; color: white;">
+                    We're <strong>enhancing where needed</strong>, <strong>changing if required</strong>, and <strong>improving where we can</strong>. That's it. Simple continuous improvement effort.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="background: rgba(0, 227, 169, 0.05); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">✅</div>
+                    <h4 style="color: white; margin-bottom: 0.5rem;">Keep What Works</h4>
+                    <p style="opacity: 0.9;">Don't fix what isn't broken</p>
+                </div>
+
+                <div style="background: rgba(0, 227, 169, 0.05); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔧</div>
+                    <h4 style="color: white; margin-bottom: 0.5rem;">Enhance Where Needed</h4>
+                    <p style="opacity: 0.9;">Small tweaks, big impact</p>
+                </div>
+
+                <div style="background: rgba(0, 227, 169, 0.05); padding: 1.5rem; border-radius: 12px; text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚀</div>
+                    <h4 style="color: white; margin-bottom: 0.5rem;">Improve Continuously</h4>
+                    <p style="opacity: 0.9;">Always getting better</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continuous Improvement Circle -->
+        <div class="glass-section" style="text-align: center; padding-top: 1rem; padding-bottom: 3rem;">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--stockholm-neon);">The Sentinel Cycle</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 4rem; opacity: 0.9;">Continuous Improvement Never Stops</p>
+
+            <div class="improvement-circle">
+                <div class="circle-ring">
+                    <div class="circle-ring-rotating">
+                        <div class="circle-dot"></div>
+                        <div class="circle-dot"></div>
+                        <div class="circle-dot"></div>
+                        <div class="circle-dot"></div>
+                        <div class="circle-dot"></div>
+                    </div>
+                </div>
+
+                <div class="circle-labels">
+                    <div class="circle-label">
+                        <span class="circle-label-icon">💡</span>
+                        IDEA
+                    </div>
+                    <div class="circle-label">
+                        <span class="circle-label-icon">🔍</span>
+                        REVIEW
+                    </div>
+                    <div class="circle-label">
+                        <span class="circle-label-icon">✅</span>
+                        APPROVE
+                    </div>
+                    <div class="circle-label">
+                        <span class="circle-label-icon">🚀</span>
+                        IMPLEMENT
+                    </div>
+                    <div class="circle-label">
+                        <span class="circle-label-icon">📈</span>
+                        IMPROVE
+                    </div>
+                </div>
+
+                <div class="circle-center">
+                    <div class="circle-center-text">CONTINUOUS<br>IMPROVEMENT</div>
+                </div>
+            </div>
+
+            <p style="font-size: 1.15rem; margin-top: 5rem; line-height: 1.8; max-width: 700px; margin-left: auto; margin-right: auto;">
+                The Sentinel cycle represents our commitment to <strong style="color: var(--stockholm-neon);">continuous improvement</strong>. Ideas flow through review, approval, and implementation - then the cycle begins again. Always improving, always evolving.
+            </p>
+        </div>
+
+        <!-- What is Project Sentinel -->
+        <div class="glass-section">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--stockholm-neon);">What is Project Sentinel?</h2>
+            <p style="font-size: 1.2rem; line-height: 1.9; margin-bottom: 2rem;">
+                Project Sentinel is <strong>your opportunity to improve our business</strong> in any way you can imagine. This isn't just about processes - it's about <strong>ANYTHING</strong> that makes Vysus better.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="background: rgba(0, 227, 169, 0.1); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--stockholm-neon);">
+                    <h3 style="color: var(--stockholm-neon); margin-bottom: 0.8rem;">💻 Systems & Scripting</h3>
+                    <p>Automation, tools, templates, shortcuts - anything that saves time</p>
+                </div>
+
+                <div style="background: rgba(75, 129, 239, 0.1); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--bath-sky);">
+                    <h3 style="color: var(--bath-sky); margin-bottom: 0.8rem;">💬 Client Communication</h3>
+                    <p>Better reports, clearer emails, improved presentations</p>
+                </div>
+
+                <div style="background: rgba(142, 50, 156, 0.1); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--mumbai-magenta);">
+                    <h3 style="color: var(--houston-pink); margin-bottom: 0.8rem;">🔄 Business Flow</h3>
+                    <p>Streamline handoffs, reduce bottlenecks, remove friction</p>
+                </div>
+
+                <div style="background: rgba(241, 196, 15, 0.1); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #f1c40f;">
+                    <h3 style="color: #f1c40f; margin-bottom: 0.8rem;">📊 Quality & Standards</h3>
+                    <p>Improve consistency, reduce errors, maintain excellence</p>
+                </div>
+
+                <div style="background: rgba(249, 45, 99, 0.1); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--orlando-red);">
+                    <h3 style="color: var(--orlando-red); margin-bottom: 0.8rem;">🔍 Competitive Intelligence</h3>
+                    <p>What are competitors doing? What can we learn?</p>
+                </div>
+
+                <div style="background: rgba(5, 39, 94, 0.2); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--hellerup-royal);">
+                    <h3 style="color: var(--bath-sky); margin-bottom: 0.8rem;">💡 Anything Else!</h3>
+                    <p>Think outside the box - any idea that helps the business</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sentinel Network -->
+        <div class="glass-section">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--stockholm-neon); text-align: center;">🛡️ Your Sentinel Team</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">
+                Sentinels are your <strong style="color: var(--stockholm-neon);">business leads</strong> who review ideas through a business lens
+            </p>
+
+            <div class="mini-org-chart">
+                <!-- Malaysia -->
+                <div class="region-box malaysia">
+                    <div class="region-title" style="color: #E74C3C;">🇲🇾 Malaysia</div>
+                    <div class="sentinel-badge">
+                        <div class="sentinel-name">Amani Razif</div>
+                        <div class="sentinel-role">Sentinel Lead</div>
+                    </div>
+                    <div class="sentinel-badge">
+                        <div class="sentinel-name">Syafiq Ishamuddin</div>
+                        <div class="sentinel-role">Sentinel</div>
+                    </div>
+                </div>
+
+                <!-- Australia -->
+                <div class="region-box australia">
+                    <div class="region-title" style="color: #4b81ef;">🇦🇺 Australia</div>
+                    <div class="sentinel-badge">
+                        <div class="sentinel-name">Chris Marinelli</div>
+                        <div class="sentinel-role">Sentinel Lead</div>
+                    </div>
+                    <div class="sentinel-badge">
+                        <div class="sentinel-name">Dominic Moncada</div>
+                        <div class="sentinel-role">Sentinel</div>
+                    </div>
+                </div>
+
+                <!-- India -->
+                <div class="region-box india">
+                    <div class="region-title" style="color: #F1C40F;">🇮🇳 India</div>
+                    <div class="sentinel-badge">
+                        <div class="sentinel-name">Faraz Khan</div>
+                        <div class="sentinel-role">Sentinel Lead</div>
+                    </div>
+                    <div class="sentinel-badge">
+                        <div class="sentinel-name">Abhinit Gaurav</div>
+                        <div class="sentinel-role">Sentinel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Participate -->
+        <div class="how-to-participate">
+            <h2 style="font-size: 2.2rem; margin-bottom: 2rem; color: white; text-align: center;">🎯 How to Participate</h2>
+
+            <div style="display: grid; gap: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span class="step-number">1</span>
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: white;">Think of an Idea</h3>
+                        <p style="font-size: 1.05rem; opacity: 0.9;">Any improvement to the business - big or small, technical or business-focused. <strong>Think outside the box!</strong></p>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: start; gap: 1rem;">
+                    <span class="step-number">2</span>
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem; color: white;">Submit Your Idea</h3>
+                        <button class="submit-btn" onclick="openEmailTemplate()" style="margin: 0; font-size: 1.2rem; padding: 1rem 2rem;">
+                            📧 Click to Submit to Chris Marinelli
+                        </button>
+                        <p style="font-size: 0.95rem; opacity: 0.7; margin-top: 0.8rem;">Opens email with pre-filled template</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: start; gap: 1rem;">
+                    <span class="step-number">3</span>
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: white;">Weekly Reviews with Sentinels</h3>
+                        <p style="font-size: 1.05rem; opacity: 0.9;">Chris collates submissions and facilitates weekly reviews with the Sentinel team (who can also submit ideas!). Ideas discussed openly as a panel. <strong style="color: var(--stockholm-neon);">Fair, transparent, collaborative.</strong></p>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: start; gap: 1rem;">
+                    <span class="step-number">4</span>
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: white;">Be Actively Involved</h3>
+                        <p style="font-size: 1.05rem; opacity: 0.9;">This isn't "drop and run" - be engaged! Answer questions, provide clarification, refine your idea based on feedback.</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: start; gap: 1rem;">
+                    <span class="step-number">5</span>
+                    <div>
+                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: white;">Winner Announced Dec 22, 2025</h3>
+                        <p style="font-size: 1.05rem; opacity: 0.9;">MacBook Air awarded to the person with the best business improvement idea!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What We're Looking For -->
+        <div class="glass-section">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--stockholm-neon);">💡 What We're Looking For</h2>
+
+            <div style="background: linear-gradient(135deg, rgba(0, 227, 169, 0.1), rgba(0, 84, 84, 0.1)); padding: 2rem; border-radius: 15px; border: 2px solid var(--stockholm-neon); margin-bottom: 2rem;">
+                <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">Ideas That Improve The Business</h3>
+                <ul style="font-size: 1.15rem; line-height: 2.2; list-style: none; padding: 0;">
+                    <li><strong style="color: var(--stockholm-neon);">✓</strong> Saves time or money</li>
+                    <li><strong style="color: var(--stockholm-neon);">✓</strong> Improves quality or reduces errors</li>
+                    <li><strong style="color: var(--stockholm-neon);">✓</strong> Makes work flow more smoothly</li>
+                    <li><strong style="color: var(--stockholm-neon);">✓</strong> Enhances client experience</li>
+                    <li><strong style="color: var(--stockholm-neon);">✓</strong> Removes complexity or friction</li>
+                    <li><strong style="color: var(--stockholm-neon);">✓</strong> Standardizes across regions</li>
+                    <li><strong style="color: var(--stockholm-neon);">✓</strong> Simple to implement but high value</li>
+                </ul>
+            </div>
+
+            <div style="background: rgba(241, 136, 244, 0.1); padding: 2rem; border-radius: 15px; border: 2px solid var(--houston-pink); text-align: center;">
+                <p style="font-size: 1.3rem; font-weight: 700; color: white; line-height: 1.9;">
+                    <strong style="color: var(--houston-pink);">ALL IDEAS ARE VALUABLE!</strong><br>
+                    Don't hold back - even small improvements matter.
+                </p>
+            </div>
+        </div>
+
+        <!-- Terms & Conditions - Expandable Sections -->
+        <div class="glass-section">
+            <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: var(--stockholm-neon);">📋 Terms & Conditions</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">
+                Click any section below to expand and read full details
+            </p>
+
+            <div style="background: rgba(0, 227, 169, 0.1); border: 3px solid var(--stockholm-neon); border-radius: 15px; padding: 2rem; margin-bottom: 2rem;">
+                <h3 style="color: var(--stockholm-neon); font-size: 1.5rem; margin-bottom: 1.5rem; text-align: center;">⚠️ Important: This is the Manual Phase</h3>
+                <p style="font-size: 1.15rem; line-height: 1.9; text-align: center;">
+                    The December prize is <strong style="color: white;">manually judged</strong> before we move to the automated quarterly system in 2026. This gives us time to refine the platform while you start improving the business!
+                </p>
+                <p style="font-size: 1.05rem; line-height: 1.9; text-align: center; margin-top: 1rem; opacity: 0.95;">
+                    <strong style="color: var(--houston-pink);">💡 Trial Program:</strong> We're trialing quarterly prizes as an exciting addition to the Sentinel program. Based on how this trial goes, we'll assess whether to continue the prize element in future quarters. Regardless of prizes, our commitment to continuous improvement and recognizing great ideas remains at the heart of Sentinel!
+                </p>
+            </div>
+
+            <!-- Accordion 1: Eligibility & Participation -->
+            <div class="accordion active">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3>👥 Eligibility & Who Can Participate</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>All Vysus Power and Energy Systems team members</strong> can participate, including Sentinels</li>
+                            <li><strong>Sentinels can submit ideas:</strong> Yes! Sentinel team members are eligible and encouraged to participate</li>
+                            <li><strong>All regions eligible:</strong> Malaysia, Australia, and India - everyone has an equal opportunity</li>
+                            <li><strong>All roles eligible:</strong> Engineers, Senior Engineers, Leads, Regional Managers - everyone's ideas count</li>
+                            <li><strong>No restrictions:</strong> Whether you're new or experienced, your ideas are valuable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 2: Submission Process -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3>📝 Submission Process & Timeline</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Submissions:</strong> Ongoing and continuous - submit anytime! No hard deadline, always open</li>
+                            <li><strong>How to submit:</strong> Click the "Submit Your Idea" button to open pre-filled email template</li>
+                            <li><strong>Where to send:</strong> chris.marinelli@vysusgroup.com</li>
+                            <li><strong>Multiple entries encouraged:</strong> Submit as many ideas as you have - quality matters more than quantity</li>
+                            <li><strong>Revisions allowed:</strong> You can refine and resubmit ideas based on feedback</li>
+                            <li><strong>Late submissions considered:</strong> Even late ideas will be considered if they're strong</li>
+                            <li><strong>Prize announcement:</strong> December 22, 2025</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 3: Review Process & Judging Criteria -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3>⚖️ How We Review & Judge Ideas</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <h4 style="color: var(--stockholm-neon); margin-bottom: 1rem;">Review Process:</h4>
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Weekly reviews:</strong> Chris facilitates weekly sessions with the Sentinel team - open, collaborative discussions</li>
+                            <li><strong>Fair for Sentinels:</strong> Sentinel team members can submit ideas too! They don't vote on their own submissions</li>
+                            <li><strong>Panel approach:</strong> Your peers and Sentinels discuss each idea's business value together</li>
+                            <li><strong>Final call:</strong> Chris makes the final decision based on panel input and business judgment</li>
+                        </ul>
+
+                        <h4 style="color: var(--houston-pink); margin-top: 2rem; margin-bottom: 1rem;">What We Value Most:</h4>
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Business impact:</strong> How much does this help Vysus? (Most important!)</li>
+                            <li><strong>Practical savings:</strong> Time saved, money saved, effort reduced</li>
+                            <li><strong>Feasibility:</strong> Can we actually implement this? How complex?</li>
+                            <li><strong>Reach:</strong> How many people, projects, or regions benefit?</li>
+                            <li><strong>Your engagement:</strong> Are you actively involved in refining the idea?</li>
+                            <li><strong>Clarity:</strong> Is it well-explained and thought through?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 5: Prize Details -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3>🏆 Prize Details, Alternatives & Tax Implications</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <h4 style="color: var(--stockholm-neon); margin-bottom: 1rem;">Prize Options</h4>
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Option 1:</strong> MacBook Air (latest model, your choice of color, subject to availability)</li>
+                            <li><strong>Option 2:</strong> Cash payment to the value of MacBook Air retail price</li>
+                            <li><strong>Option 3:</strong> Equivalent Windows laptop of similar value (Dell XPS, Surface Laptop, or similar, subject to availability)</li>
+                            <li><strong>Winner's choice:</strong> Prize winner may choose any of the above options within 7 days of announcement</li>
+                            <li><strong>Prize substitution:</strong> If preferred model unavailable, management reserves right to substitute with equivalent value alternative at management's sole discretion</li>
+                        </ul>
+
+                        <h4 style="color: var(--bath-sky); margin-top: 2rem; margin-bottom: 1rem;">💰 Cash Prize Payment Details</h4>
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Payment method:</strong> Cash prize may be paid via payroll as a one-time bonus payment, or via other payment method at management's discretion</li>
+                            <li><strong>Payment timing:</strong> May be paid in the next available pay cycle following prize announcement, if administratively possible</li>
+                            <li><strong>Typical timeframe:</strong> Within 2-4 weeks of December 22, 2025 announcement, subject to administrative processing and stock availability for physical prizes</li>
+                            <li><strong>Tax withholding:</strong> Appropriate tax may be withheld as per ATO PAYG requirements or other applicable tax regulations before payment</li>
+                            <li><strong>Net payment:</strong> Winner may receive net amount after tax withholding (not the gross amount)</li>
+                            <li><strong>Superannuation:</strong> Prize payment may not attract superannuation guarantee contributions</li>
+                            <li><strong>Payment delays:</strong> If administrative, payroll processing, or supply chain issues occur, payment or prize delivery may be delayed - no compensation for delays</li>
+                        </ul>
+
+                        <h4 style="color: var(--orlando-red); margin-top: 2rem; margin-bottom: 1rem;">⚠️ Australian Tax Implications (IMPORTANT)</h4>
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Taxable benefit:</strong> Prize may be treated as a taxable benefit under Australian Taxation Office (ATO) regulations or other applicable tax laws</li>
+                            <li><strong>Fringe Benefits Tax (FBT):</strong> Prize may constitute a fringe benefit and may be subject to FBT at management's determination</li>
+                            <li><strong>Reportable on income:</strong> Prize value may be reported on your Payment Summary / Income Statement or other tax documentation</li>
+                            <li><strong>PAYG withholding:</strong> Vysus Group may be required to withhold tax from the cash component or prize value (if cash option selected or if required by law)</li>
+                            <li><strong>Tax borne by winner:</strong> <strong style="color: var(--orlando-red);">All tax obligations, liabilities, and reporting requirements associated with the prize are the sole responsibility of the winner</strong></li>
+                            <li><strong>Gross-up not provided:</strong> Vysus Group will not provide additional compensation to cover any tax obligations or liabilities</li>
+                            <li><strong>Declaration required:</strong> Winner may be required to declare prize on their tax return and should seek independent advice</li>
+                            <li><strong>Seek advice:</strong> Winners are strongly advised to consult their tax advisor or accountant regarding potential tax implications</li>
+                        </ul>
+
+                        <h4 style="color: var(--stockholm-neon); margin-top: 2rem; margin-bottom: 1rem;">Other Prize Details</h4>
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Prize delivery:</strong> May be shipped to your location or picked up at office, at management's discretion or winner's choice where feasible</li>
+                            <li><strong>Delivery timeframe:</strong> Estimated within 30 days of prize announcement, subject to stock availability, supply chain conditions, and shipping logistics</li>
+                            <li><strong>Future quarters (Q1 2026 onwards):</strong> Quarterly prizes may be offered through automated system, subject to trial results and management approval</li>
+                            <li><strong>Prize not transferable:</strong> Prize cannot be transferred, assigned, exchanged, or sold to another person</li>
+                            <li><strong>No warranty extension:</strong> Prize comes with standard manufacturer warranty only (if applicable)</li>
+                            <li><strong>Prize value may vary:</strong> Actual prize value may vary based on market conditions, exchange rates, and availability at time of fulfillment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 6: Expectations & Engagement -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3>🤝 Your Responsibilities & Engagement</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Active participation required:</strong> Don't just submit and disappear - be engaged throughout</li>
+                            <li><strong>Respond to questions:</strong> Panel may ask for clarification or additional details</li>
+                            <li><strong>Refine your idea:</strong> Be open to feedback and willing to improve your submission</li>
+                            <li><strong>Support discussion:</strong> Participate in conversations about your idea's implementation</li>
+                            <li><strong>Implementation support:</strong> While not required to implement, showing willingness helps your case</li>
+                            <li><strong>Knowledge sharing:</strong> Be willing to share your idea with the team if it's adopted</li>
+                            <li><strong>Constructive attitude:</strong> Engage professionally and constructively</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 7: Decision Making & What You're Agreeing To -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3>🤝 Decisions, Finality & Your Agreement</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <h4 style="color: var(--stockholm-neon); margin-bottom: 1rem;">How It Works:</h4>
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Collaborative judging:</strong> Panel discusses all ideas together - what brings the most business value?</li>
+                            <li><strong>Final decision:</strong> Chris makes the final call based on panel input and business judgment</li>
+                            <li><strong>Subjective by nature:</strong> Business value is subjective - what judges value most may differ from your view, and that's okay!</li>
+                            <li><strong>Decision is final:</strong> To keep the program positive and moving forward, we ask everyone to accept the outcome graciously</li>
+                            <li><strong>No formal appeals:</strong> To keep this fun and friendly, there's no appeals process - let's all be good sports and move forward together</li>
+                            <li><strong>Feedback welcome before decision:</strong> We're happy to help refine ideas before judging, but once decided, let's respect it</li>
+                        </ul>
+
+                        <h4 style="color: var(--houston-pink); margin-top: 2rem; margin-bottom: 1rem;">By Submitting, You Agree:</h4>
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li>✓ You'll accept the outcome graciously (win or lose)</li>
+                            <li>✓ You won't raise complaints or disputes through HR or management</li>
+                            <li>✓ Your ideas can be used by Vysus to improve the business</li>
+                            <li>✓ You're responsible for any tax obligations if you win</li>
+                            <li>✓ You'll stay positive and be a good sport throughout</li>
+                            <li>✓ You'll keep it professional and constructive</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 8: Important Things to Understand -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3>ℹ️ Important Things to Understand</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>This is meant to be fun and rewarding!</strong> We want to encourage great ideas, not create stress</li>
+                            <li><strong>Not all ideas can win or be implemented:</strong> We'll choose what makes the most business sense at the time, and decisions may be influenced by changing business priorities</li>
+                            <li><strong>We may adjust as we go:</strong> This is our first time - rules, timelines, prizes, and processes may change at management's discretion, and we appreciate your flexibility</li>
+                            <li><strong>Totally voluntary with no job impact:</strong> Participation is completely optional and won't affect your employment, career progression, or performance reviews in any way</li>
+                            <li><strong>Fair play expected:</strong> We trust everyone to be honest - if we see gaming or manipulation of the system, we reserve the right to disqualify entries</li>
+                            <li><strong>Not an employment entitlement:</strong> This is a bonus opportunity and discretionary program, not part of your employment contract or entitlements</li>
+                            <li><strong>Program may be modified or discontinued:</strong> Management reserves the right to modify, suspend, or discontinue the program at any time without prior notice or obligation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion 11: Questions & Support -->
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <h3>❓ Questions & Support - We're Here to Help!</h3>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-inner">
+                        <ul style="font-size: 1.05rem; line-height: 2;">
+                            <li><strong>Have questions?</strong> Email chris.marinelli@vysusgroup.com - we're happy to help!</li>
+                            <li><strong>Need help refining your idea?</strong> Contact your regional Sentinel lead - they love helping ideas improve</li>
+                            <li><strong>Not sure if your idea fits?</strong> Submit it anyway! We'll provide constructive feedback</li>
+                            <li><strong>Want to discuss before submitting?</strong> Reach out to Chris or any Sentinel team member for a chat</li>
+                            <li><strong>Feedback on the program itself?</strong> We're continuously improving this too - your thoughts are welcome!</li>
+                            <li><strong>About the decision:</strong> Once prizes are awarded, we ask everyone to respect the final decision and move forward positively. We're happy to chat about how to strengthen future submissions!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Looking Ahead -->
+        <div class="glass-section" style="background: linear-gradient(135deg, rgba(0, 227, 169, 0.1), rgba(0, 84, 84, 0.1)); border: 3px solid var(--stockholm-neon);">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1.5rem; color: white; text-align: center;">🚀 Coming in 2026</h2>
+            <p style="font-size: 1.2rem; line-height: 1.9; text-align: center; margin-bottom: 2rem;">
+                We're building a <strong style="color: var(--stockholm-neon);">full digital platform</strong> for Project Sentinel with:
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏆</div>
+                    <h4 style="color: white; margin-bottom: 0.5rem;">Quarterly Prizes*</h4>
+                    <p style="opacity: 0.9;">Starting Q1 2026</p>
+                    <p style="opacity: 0.7; font-size: 0.85rem; margin-top: 0.5rem;">*Subject to trial results</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">📊</div>
+                    <h4 style="color: white; margin-bottom: 0.5rem;">Live Leaderboard</h4>
+                    <p style="opacity: 0.9;">Track your points in real-time</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🤖</div>
+                    <h4 style="color: white; margin-bottom: 0.5rem;">AI Enhancement</h4>
+                    <p style="opacity: 0.9;">AI helps improve your ideas</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">📋</div>
+                    <h4 style="color: white; margin-bottom: 0.5rem;">Kanban Tracking</h4>
+                    <p style="opacity: 0.9;">Watch ideas through lifecycle</p>
+                </div>
+            </div>
+
+            <div style="background: rgba(0, 0, 0, 0.3); padding: 1.5rem; border-radius: 12px; margin-top: 2rem; text-align: center;">
+                <p style="font-size: 1.15rem; color: white; font-weight: 600;">
+                    <strong style="color: var(--stockholm-neon);">But we're starting NOW!</strong> Don't wait for the system - submit your ideas today!
+                </p>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align: center; margin-top: 3rem; margin-bottom: 3rem;">
+            <div style="background: linear-gradient(135deg, var(--stockholm-neon), var(--malmo-green)); padding: 3rem; border-radius: 30px; box-shadow: 0 15px 50px rgba(0, 227, 169, 0.5);">
+                <h2 style="font-size: 3rem; color: white; margin-bottom: 1.5rem;">Ready to Improve the Business?</h2>
+                <button class="submit-btn" onclick="openEmailTemplate()">
+                    📧 Click to Submit Your Idea
+                </button>
+                <p style="font-size: 1.3rem; color: white; opacity: 0.9; margin-top: 2rem;">Submit Anytime - Continuous Submissions Welcome!</p>
+                <p style="font-size: 1.5rem; color: white; margin-top: 1.5rem; font-weight: 700;">🏆 Win a MacBook Air on December 22, 2025!</p>
+            </div>
+        </div>
+
+        <script>
+            // Accordion toggle function
+            function toggleAccordion(header) {
+                const accordion = header.parentElement;
+                accordion.classList.toggle('active');
+            }
+
+            // Create mailto link with template
+            function openEmailTemplate() {
+
+                const subject = "Project Sentinel - Business Improvement Idea Submission";
+
+                const body = `╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║         🛡️  PROJECT SENTINEL - IDEA SUBMISSION FORM           ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+📧 DATE SUBMITTED: [Auto-captured from email timestamp]
+📧 SUBMITTER EMAIL: [Auto-captured from email sender]
+
+╔════════════════════════════════════════════════════════════════╗
+║  📂 CATEGORY (Put an 𝗫 in ONE box)                            ║
+╚════════════════════════════════════════════════════════════════╝
+
+    ⬜ Systems & Scripting
+    ⬜ Client Communication
+    ⬜ Business Flow / Processes
+    ⬜ Quality & Standards
+    ⬜ Competitive Intelligence
+    ⬜ Other (specify): _____________________
+
+    👉 To select: Replace ⬜ with ✅ or just type X
+
+╔════════════════════════════════════════════════════════════════╗
+║  🏷️  SUBMISSION TYPE (Put 𝗫 in ALL that apply)                ║
+╚════════════════════════════════════════════════════════════════╝
+
+    ⬜ I'm identifying a PROBLEM (no solution yet)
+    ⬜ I'm proposing a SOLUTION
+    ⬜ I'm asking a QUESTION
+    ⬜ I'm suggesting a PROCESS improvement
+    ⬜ I want to DISCUSS an idea
+    ⬜ Other: _____________________
+
+    👉 To select: Replace ⬜ with ✅ or just type X
+
+╔════════════════════════════════════════════════════════════════╗
+║  ✏️  IDEA TITLE                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+
+
+
+
+
+╔════════════════════════════════════════════════════════════════╗
+║  ❌ CURRENT PROBLEM / SITUATION                                ║
+╚════════════════════════════════════════════════════════════════╝
+What's broken? What's inefficient? What's the friction point?
+
+
+
+
+
+
+
+
+╔════════════════════════════════════════════════════════════════╗
+║  ✅ YOUR PROPOSED SOLUTION                                     ║
+╚════════════════════════════════════════════════════════════════╝
+How would you fix this? What would you implement? Be specific!
+
+
+
+
+
+
+
+
+╔════════════════════════════════════════════════════════════════╗
+║  💰 EXPECTED SAVINGS / BENEFITS                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+⏱️  TIME SAVED:
+
+
+💵 MONEY SAVED:
+
+
+⚡ EFFORT REDUCED:
+
+
+✨ OTHER BENEFITS (quality, errors, satisfaction, etc.):
+
+
+
+╔════════════════════════════════════════════════════════════════╗
+║  🎯 WHY THIS MATTERS TO THE BUSINESS                           ║
+╚════════════════════════════════════════════════════════════════╝
+Who benefits? What's the bigger impact? Why now?
+
+
+
+
+
+╔════════════════════════════════════════════════════════════════╗
+║  🔧 IMPLEMENTATION APPROACH (Optional but helpful!)            ║
+╚════════════════════════════════════════════════════════════════╝
+
+📋 What's needed to implement this?
+
+
+⏰ Estimated timeline to implement?
+
+
+👥 Who would need to be involved?
+
+
+💡 Any risks or challenges to consider?
+
+
+
+╔════════════════════════════════════════════════════════════════╗
+║  📎 ADDITIONAL INFORMATION                                     ║
+╚════════════════════════════════════════════════════════════════╝
+
+Examples / Case Studies:
+
+
+Supporting Data / Evidence:
+
+
+References (competitors, industry standards, etc.):
+
+
+Other Notes:
+
+
+
+╔════════════════════════════════════════════════════════════════╗
+║  👤 YOUR INFORMATION                                           ║
+╚════════════════════════════════════════════════════════════════╝
+
+Full Name:
+
+
+Region:  ⬜ Malaysia    ⬜ Australia    ⬜ India
+         👉 Replace ⬜ with ✅ or type X
+
+Role/Title:
+
+
+Years at Vysus:
+
+
+╔════════════════════════════════════════════════════════════════╗
+║  ✍️  ACKNOWLEDGMENT                                            ║
+╚════════════════════════════════════════════════════════════════╝
+
+By submitting this idea, I acknowledge:
+
+✓ I accept all Terms & Conditions
+✓ Judges' decision is FINAL and I'll be a good sport
+✓ This idea can be used by Vysus to improve the business
+✓ I'll be actively engaged throughout the review process
+✓ I'm responsible for any tax obligations if I win
+
+╔════════════════════════════════════════════════════════════════╗
+
+Thank you for contributing to continuous improvement at
+Vysus Power and Energy Systems!
+
+🛡️ PROJECT SENTINEL - Guardians of Business Excellence
+
+╚════════════════════════════════════════════════════════════════╝`;
+
+                const mailtoLink = 'mailto:chris.marinelli@vysusgroup.com?subject=' +
+                    encodeURIComponent(subject) +
+                    '&body=' +
+                    encodeURIComponent(body);
+
+                window.location.href = mailtoLink;
+            }
+        </script>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding: 2rem; opacity: 0.7;">
+            <p style="font-size: 1rem;">Project Sentinel | Vysus Power and Energy Systems</p>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Guardians of Business Excellence</p>
+        </div>
+    </div>
+</body>
+</html>
