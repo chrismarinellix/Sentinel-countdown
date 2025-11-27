@@ -112,49 +112,118 @@
             font-weight: 700;
         }
 
-        /* Countdown - THE BIG ONE */
-        .countdown-container {
+        /* FLIP CLOCK STYLES */
+        .flip-clock-container {
             display: flex;
             justify-content: center;
-            gap: clamp(20px, 5vw, 50px);
+            gap: clamp(10px, 3vw, 30px);
             margin: 2rem 0;
             flex-wrap: wrap;
         }
 
-        .countdown-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(40px);
-            border: 3px solid rgba(0, 227, 169, 0.5);
-            border-radius: 25px;
-            padding: clamp(25px, 5vw, 50px);
-            min-width: clamp(120px, 22vw, 200px);
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 227, 169, 0.2);
-            transition: all 0.3s ease;
+        .flip-clock-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .countdown-box:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: var(--stockholm-neon);
-            box-shadow: 0 20px 60px rgba(0, 227, 169, 0.5);
-        }
-
-        .countdown-number {
-            font-size: clamp(4rem, 12vw, 8rem);
-            font-weight: 900;
-            color: var(--stockholm-neon);
-            text-shadow: 0 0 40px rgba(0, 227, 169, 0.9);
-            line-height: 1;
-        }
-
-        .countdown-label {
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
+        .flip-clock-label {
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 12px;
             font-weight: 600;
         }
+
+        .flip-clock-digits {
+            display: flex;
+            gap: 4px;
+        }
+
+        .flip-card {
+            position: relative;
+            width: clamp(50px, 12vw, 90px);
+            height: clamp(70px, 16vw, 120px);
+            perspective: 400px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            border-radius: 8px;
+            box-shadow:
+                0 4px 8px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1),
+                0 0 20px rgba(0, 227, 169, 0.2);
+            overflow: hidden;
+        }
+
+        /* Top half */
+        .flip-card-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Center line */
+        .flip-card-inner::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #000;
+            transform: translateY(-50%);
+            z-index: 10;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .flip-card-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Courier New', monospace;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: var(--stockholm-neon);
+            text-shadow: 0 0 20px rgba(0, 227, 169, 0.8);
+            z-index: 5;
+        }
+
+        /* Flip animation */
+        .flip-card.flipping .flip-card-inner {
+            animation: flipTop 0.3s ease-in;
+        }
+
+        @keyframes flipTop {
+            0% { transform: rotateX(0); }
+            50% { transform: rotateX(-5deg); }
+            100% { transform: rotateX(0); }
+        }
+
+        /* Rivets/screws on corners */
+        .flip-card-inner .rivet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #444 0%, #222 100%);
+            border-radius: 50%;
+            z-index: 15;
+        }
+        .flip-card-inner .rivet.tl { top: 6px; left: 6px; }
+        .flip-card-inner .rivet.tr { top: 6px; right: 6px; }
+        .flip-card-inner .rivet.bl { bottom: 6px; left: 6px; }
+        .flip-card-inner .rivet.br { bottom: 6px; right: 6px; }
 
         /* Draw Date Box */
         .draw-date-box {
@@ -168,12 +237,8 @@
         }
 
         @keyframes glow {
-            from {
-                box-shadow: 0 12px 40px rgba(0, 227, 169, 0.5);
-            }
-            to {
-                box-shadow: 0 12px 60px rgba(0, 227, 169, 0.8);
-            }
+            from { box-shadow: 0 12px 40px rgba(0, 227, 169, 0.5); }
+            to { box-shadow: 0 12px 60px rgba(0, 227, 169, 0.8); }
         }
 
         .draw-date-box h2 {
@@ -319,48 +384,72 @@
             color: #fff;
         }
 
-        /* Warning Footer */
+        /* HAZARD WARNING BOX */
         .warning-footer {
             margin-top: 1.5rem;
             padding: 1rem;
             text-align: center;
-            max-width: 700px;
+            max-width: 750px;
         }
 
-        .warning-box {
-            background: rgba(249, 45, 99, 0.1);
-            border: 2px solid var(--orlando-red);
-            border-radius: 15px;
-            padding: 1.2rem;
+        .hazard-box {
+            position: relative;
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        .warning-text {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
+        /* Hazard stripes top */
+        .hazard-stripes {
+            height: 20px;
+            background: repeating-linear-gradient(
+                -45deg,
+                #f1c40f,
+                #f1c40f 20px,
+                #1a1a1a 20px,
+                #1a1a1a 40px
+            );
         }
 
-        .warning-text .highlight {
-            color: var(--orlando-red);
-            font-weight: 700;
+        .hazard-content {
+            padding: 1.5rem;
+            background: linear-gradient(180deg, rgba(241, 196, 15, 0.1) 0%, rgba(0,0,0,0) 100%);
         }
 
-        .zap-icon {
-            color: #ffd700;
-            font-size: 1rem;
+        .hazard-title {
+            display: inline-block;
+            background: #f1c40f;
+            color: #1a1a1a;
+            font-weight: 900;
+            font-size: 1.1rem;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hazard-text {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.7;
+        }
+
+        .hazard-text strong {
+            color: #f1c40f;
         }
 
         /* Responsive */
         @media (max-width: 600px) {
-            .countdown-container {
-                gap: 15px;
+            .flip-clock-container {
+                gap: 8px;
             }
-            .countdown-box {
-                min-width: 90px;
-                padding: 20px;
+            .flip-card {
+                width: 45px;
+                height: 60px;
             }
-            .countdown-number {
-                font-size: 3.5rem;
+            .flip-card-number {
+                font-size: 2rem;
             }
             .enter-btn {
                 padding: 1.2rem 2.5rem;
@@ -390,23 +479,102 @@
             <p class="tagline">Continuous Business Improvement</p>
         </div>
 
-        <!-- BIG Countdown - FIRST -->
-        <div class="countdown-container">
-            <div class="countdown-box">
-                <div class="countdown-number" id="days">00</div>
-                <div class="countdown-label">Days</div>
+        <!-- FLIP CLOCK -->
+        <div class="flip-clock-container">
+            <div class="flip-clock-unit">
+                <div class="flip-clock-digits">
+                    <div class="flip-card" id="days-tens">
+                        <div class="flip-card-inner">
+                            <div class="rivet tl"></div>
+                            <div class="rivet tr"></div>
+                            <div class="rivet bl"></div>
+                            <div class="rivet br"></div>
+                            <span class="flip-card-number">0</span>
+                        </div>
+                    </div>
+                    <div class="flip-card" id="days-ones">
+                        <div class="flip-card-inner">
+                            <div class="rivet tl"></div>
+                            <div class="rivet tr"></div>
+                            <div class="rivet bl"></div>
+                            <div class="rivet br"></div>
+                            <span class="flip-card-number">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-clock-label">Days</div>
             </div>
-            <div class="countdown-box">
-                <div class="countdown-number" id="hours">00</div>
-                <div class="countdown-label">Hours</div>
+
+            <div class="flip-clock-unit">
+                <div class="flip-clock-digits">
+                    <div class="flip-card" id="hours-tens">
+                        <div class="flip-card-inner">
+                            <div class="rivet tl"></div>
+                            <div class="rivet tr"></div>
+                            <div class="rivet bl"></div>
+                            <div class="rivet br"></div>
+                            <span class="flip-card-number">0</span>
+                        </div>
+                    </div>
+                    <div class="flip-card" id="hours-ones">
+                        <div class="flip-card-inner">
+                            <div class="rivet tl"></div>
+                            <div class="rivet tr"></div>
+                            <div class="rivet bl"></div>
+                            <div class="rivet br"></div>
+                            <span class="flip-card-number">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-clock-label">Hours</div>
             </div>
-            <div class="countdown-box">
-                <div class="countdown-number" id="minutes">00</div>
-                <div class="countdown-label">Minutes</div>
+
+            <div class="flip-clock-unit">
+                <div class="flip-clock-digits">
+                    <div class="flip-card" id="mins-tens">
+                        <div class="flip-card-inner">
+                            <div class="rivet tl"></div>
+                            <div class="rivet tr"></div>
+                            <div class="rivet bl"></div>
+                            <div class="rivet br"></div>
+                            <span class="flip-card-number">0</span>
+                        </div>
+                    </div>
+                    <div class="flip-card" id="mins-ones">
+                        <div class="flip-card-inner">
+                            <div class="rivet tl"></div>
+                            <div class="rivet tr"></div>
+                            <div class="rivet bl"></div>
+                            <div class="rivet br"></div>
+                            <span class="flip-card-number">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-clock-label">Minutes</div>
             </div>
-            <div class="countdown-box">
-                <div class="countdown-number" id="seconds">00</div>
-                <div class="countdown-label">Seconds</div>
+
+            <div class="flip-clock-unit">
+                <div class="flip-clock-digits">
+                    <div class="flip-card" id="secs-tens">
+                        <div class="flip-card-inner">
+                            <div class="rivet tl"></div>
+                            <div class="rivet tr"></div>
+                            <div class="rivet bl"></div>
+                            <div class="rivet br"></div>
+                            <span class="flip-card-number">0</span>
+                        </div>
+                    </div>
+                    <div class="flip-card" id="secs-ones">
+                        <div class="flip-card-inner">
+                            <div class="rivet tl"></div>
+                            <div class="rivet tr"></div>
+                            <div class="rivet bl"></div>
+                            <div class="rivet br"></div>
+                            <span class="flip-card-number">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-clock-label">Seconds</div>
             </div>
         </div>
 
@@ -415,7 +583,7 @@
             <h2>🎯 DRAW: 19th December 2025 @ 12:00 PM</h2>
         </div>
 
-        <!-- Prize Info - Updated -->
+        <!-- Prize Info -->
         <div class="prize-box">
             <div class="prize-main">🏆 MacBook Air</div>
             <div class="prize-alt">OR Windows Laptop OR Cash Equivalent</div>
@@ -452,35 +620,93 @@
             </div>
         </div>
 
-        <!-- Warning Footer -->
+        <!-- HAZARD Warning Footer -->
         <div class="warning-footer">
-            <div class="warning-box">
-                <p class="warning-text">
-                    <span class="zap-icon">⚡</span>
-                    <span class="highlight">FRIENDLY REMINDER:</span> Missing this competition is like standing next to a
-                    switchgear during an arc flash — except instead of 19,000°C of plasma,
-                    you'll just feel the warm glow of regret watching your colleague unbox a new MacBook.
-                    <span class="zap-icon">⚡</span>
-                    <br><br>
-                    <em style="opacity: 0.7;">5 minutes now could mean a shiny new laptop later. Just saying.</em>
-                </p>
+            <div class="hazard-box">
+                <div class="hazard-stripes"></div>
+                <div class="hazard-content">
+                    <div class="hazard-title">⚠️ WARNING ⚠️</div>
+                    <p class="hazard-text">
+                        Not participating and then watching your colleague win a <strong>MacBook Air</strong>
+                        for submitting that process improvement idea you've been complaining about for months
+                        is the <strong>emotional equivalent of an arc flash</strong>.
+                        <br><br>
+                        <em>Submit your idea. It takes 5 minutes. Your future self will thank you.</em>
+                    </p>
+                </div>
+                <div class="hazard-stripes"></div>
             </div>
         </div>
     </div>
 
+    <!-- Click sound for flip clock -->
+    <audio id="clickSound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRl9vT19teleVBgAAAQBAAAgAAAAAAAAAgAAAAAAAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA=" type="audio/wav">
+    </audio>
+
     <script>
-        // Countdown timer
+        // Create click sound using Web Audio API
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playClick() {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = 1800;
+            oscillator.type = 'square';
+
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.05);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.05);
+        }
+
+        // Store previous values to detect changes
+        let prevValues = {
+            daysTens: -1, daysOnes: -1,
+            hoursTens: -1, hoursOnes: -1,
+            minsTens: -1, minsOnes: -1,
+            secsTens: -1, secsOnes: -1
+        };
+
+        function updateDigit(elementId, newValue, prevKey) {
+            const element = document.getElementById(elementId);
+            const numberSpan = element.querySelector('.flip-card-number');
+
+            if (prevValues[prevKey] !== newValue) {
+                // Trigger flip animation
+                element.classList.add('flipping');
+                setTimeout(() => element.classList.remove('flipping'), 300);
+
+                // Play click sound
+                if (prevValues[prevKey] !== -1) {
+                    playClick();
+                }
+
+                prevValues[prevKey] = newValue;
+            }
+
+            numberSpan.textContent = newValue;
+        }
+
         function updateCountdown() {
-            // Target: December 19, 2025 at 12:00 PM
             const targetDate = new Date('2025-12-19T12:00:00');
             const now = new Date();
             const diff = targetDate - now;
 
             if (diff <= 0) {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
+                updateDigit('days-tens', 0, 'daysTens');
+                updateDigit('days-ones', 0, 'daysOnes');
+                updateDigit('hours-tens', 0, 'hoursTens');
+                updateDigit('hours-ones', 0, 'hoursOnes');
+                updateDigit('mins-tens', 0, 'minsTens');
+                updateDigit('mins-ones', 0, 'minsOnes');
+                updateDigit('secs-tens', 0, 'secsTens');
+                updateDigit('secs-ones', 0, 'secsOnes');
                 return;
             }
 
@@ -489,11 +715,27 @@
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            const daysStr = String(days).padStart(2, '0');
+            const hoursStr = String(hours).padStart(2, '0');
+            const minsStr = String(minutes).padStart(2, '0');
+            const secsStr = String(seconds).padStart(2, '0');
+
+            updateDigit('days-tens', daysStr[0], 'daysTens');
+            updateDigit('days-ones', daysStr[1], 'daysOnes');
+            updateDigit('hours-tens', hoursStr[0], 'hoursTens');
+            updateDigit('hours-ones', hoursStr[1], 'hoursOnes');
+            updateDigit('mins-tens', minsStr[0], 'minsTens');
+            updateDigit('mins-ones', minsStr[1], 'minsOnes');
+            updateDigit('secs-tens', secsStr[0], 'secsTens');
+            updateDigit('secs-ones', secsStr[1], 'secsOnes');
         }
+
+        // Initialize audio context on first user interaction
+        document.addEventListener('click', () => {
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }, { once: true });
 
         // Update every second
         updateCountdown();
